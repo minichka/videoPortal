@@ -10,7 +10,13 @@ export const App = () => {
       <Switch>
         <Route path="/" exact component={VideoListContainer}></Route>
         <Route path="/search" component={VideoListContainer}></Route>
-        <Route path="/film/:id" component={VideoCardContainer}></Route>
+        <Route
+          path="/film/:id"
+          render={props => (
+            <VideoCardContainer videoID={props.match.params.id} {...props} />
+          )}
+          // component={VideoCardContainer}
+        ></Route>
         <Route component={NotFound}></Route>
       </Switch>
     </Router>

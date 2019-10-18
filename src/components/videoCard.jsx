@@ -1,19 +1,11 @@
 import React, { Component } from "react";
 
 class VideoCard extends Component {
-  state = {};
-  async componentDidMount() {
-    let data = await fetch(
-      "https://reactjs-cdp.herokuapp.com/movies/" + this.props.videoID
-    );
-    let response = await data.json();
-    this.setState({ video: response });
-  }
   render() {
-    const video = this.state.video;
+    const video = this.props.videoItem;
     return (
       <React.Fragment>
-        {video && (
+        {video.id && (
           <div className="d-flex flex-row flex-justify-between">
             <img
               src={video.poster_path}
