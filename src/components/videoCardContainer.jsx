@@ -6,16 +6,22 @@ import VideoList from "./videoList";
 import { connect } from "react-redux";
 const divStyle = {
   width: "100%",
-  height: "600px",
+  height: "500px",
   background:
     "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.45) )," +
     `url(${BackGroundImg})`,
   padding: "20px 100px"
 };
 class VideoCardContainer extends Component {
-  state = {
-    video: {}
-  };
+  constructor(props) {
+    super(props);
+
+    this.focus = React.createRef();
+    this.state = {
+      video: {}
+    };
+  }
+
   handleClick = e => {
     e.preventDefault();
     this.props.history.push("/");
@@ -28,9 +34,11 @@ class VideoCardContainer extends Component {
     this.setState({ video: response });
   }
   async componentDidMount() {
+    this.focus.current.scrollIntoView();
     this.getData();
   }
   async componentDidUpdate() {
+    this.focus.current.scrollIntoView();
     if (this.state.video.id != this.props.videoID) {
       this.getData();
     }
@@ -46,10 +54,11 @@ class VideoCardContainer extends Component {
     return (
       <React.Fragment>
         <div
+          ref={this.focus}
           style={divStyle}
-          className="d-flex flex-column flex-justify-between"
+          className="d-flex flex-column justify-content-around"
         >
-          <div className="d-flex flex-row">
+          <div className="d-flex flex-row justify-content-between">
             <Logo />
             <button
               onClick={e => this.handleClick(e)}
@@ -65,7 +74,12 @@ class VideoCardContainer extends Component {
           </div>
           <VideoCard videoItem={this.state.video} />
         </div>
-        <VideoList videoList={relatedVideos} />
+        <div>
+          <div className="container">
+            <p>Related Videos</p>
+          </div>
+          <VideoList videoList={relatedVideos} />
+        </div>
       </React.Fragment>
     );
   }

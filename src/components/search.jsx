@@ -30,7 +30,6 @@ class Search extends Component {
       const [type, value] = Object.entries(values)[0];
 
       if (this.props.searchFilter.includes(type)) {
-        //if(this.props.searchBy != type)
         this.props.onSearchTypeChange(type);
         this.props.onSearchInputChange(value);
       } else {
@@ -85,13 +84,13 @@ const mapStateToProps = state => ({
   searchFilter: state.common.searchFilter
 });
 
-const mapDistpatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   onSearchInputChange: query => dispatch(queryStringChange(query)),
   onSearchTypeChange: type => dispatch(searchTypeChange(type))
 });
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDistpatchToProps
+    mapDispatchToProps
   )(Search)
 );

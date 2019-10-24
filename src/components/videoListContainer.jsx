@@ -7,12 +7,6 @@ import VideoList from "./videoList";
 import Loader from "./public/loader";
 
 class VideoListContainer extends Component {
-  state = {
-    // searchBy: "title",
-    //sortBy: "release_date",
-    //searchFilter: ["title", "genres"],
-    sortFilter: ["release_date", "vote_average"]
-  };
 
   async componentDidMount() {
     this.props.dispatch(fetchData());

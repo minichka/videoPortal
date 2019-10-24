@@ -3,7 +3,7 @@ import VideoItem from "./videoItem";
 
 const VideoList = props => {
   return (
-    <div className="album py-5">
+    <div className="album">
       <div className="container">
         <div className="row">
           {props.videoList.map(video => (
